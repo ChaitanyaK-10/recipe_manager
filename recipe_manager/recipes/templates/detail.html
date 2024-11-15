@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.name }} Details{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">{{ recipe.name }}</h1>
+<h3>Ingredients</h3>
+<ul class="list-group mb-4">
+    {% for item in recipe.ingredients.split(',') %}
+    <li class="list-group-item d-flex align-items-center">
+        <input type="checkbox" class="form-check-input me-2">
+        {{ item }}
+    </li>
+    {% endfor %}
+</ul>
+<h3>Instructions</h3>
+<p>{{ recipe.instructions }}</p>
+<a href="{% url 'home' %}" class="btn btn-primary">Back to List</a>
+{% endblock %}

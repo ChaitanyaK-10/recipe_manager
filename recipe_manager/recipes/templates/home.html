@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}All Recipes{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">All Recipes</h1>
+<a href="{% url 'add_recipe' %}" class="btn btn-primary mb-3">Add New Recipe</a>
+<div class="row">
+    {% for recipe in recipes %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <a href="{% url 'recipe_detail' recipe.pk %}" class="btn btn-outline-primary btn-sm">View</a>
+                <a href="{% url 'edit_recipe' recipe.pk %}" class="btn btn-outline-warning btn-sm">Edit</a>
+                <a href="{% url 'delete_recipe' recipe.pk %}" class="btn btn-outline-danger btn-sm">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

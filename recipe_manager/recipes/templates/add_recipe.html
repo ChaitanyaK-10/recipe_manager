@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Recipe{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">Add Recipe</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="name" class="form-label">Recipe Name</label>
+        <input type="text" id="name" name="name" class="form-control" onkeyup="updatePreview()">
+    </div>
+    <div class="mb-3">
+        <label for="ingredients" class="form-label">Ingredients</label>
+        <textarea id="ingredients" name="ingredients" class="form-control" rows="4" onkeyup="updatePreview()"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="instructions" class="form-label">Instructions</label>
+        <textarea id="instructions" name="instructions" class="form-control" rows="4" onkeyup="updatePreview()"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Save Recipe</button>
+</form>
+<div class="mt-4">
+    <h3>Preview</h3>
+    <p><strong>Name:</strong> <span id="preview-name"></span></p>
+    <p><strong>Ingredients:</strong> <span id="preview-ingredients"></span></p>
+    <p><strong>Instructions:</strong> <span id="preview-instructions"></span></p>
+</div>
+<script>
+    function updatePreview() {
+        document.getElementById('preview-name').textContent = document.getElementById('name').value;
+        document.getElementById('preview-ingredients').textContent = document.getElementById('ingredients').value;
+        document.getElementById('preview-instructions').textContent = document.getElementById('instructions').value;
+    }
+</script>
+{% endblock %}
